@@ -1,0 +1,26 @@
+<div className="flex flex-wrap gap-1 text-4xl text-gray-400 absolute top-0 left-0">
+        {chars.map((char, index) => {
+          let className = "text-transparent"; 
+          const inputChar = typedInput[index];  
+
+          if (inputChar !== undefined) { 
+            className = inputChar === char ? "text-green-400" : "text-red-600";
+
+          }
+
+          return (
+            <span key={index} className={`whitespace-pre ${className}`}>
+                {char}
+            </span>
+          );
+        })}
+      </div>
+
+       background-color:#323437;
+
+Hinduism, major world religion originating on the Indian subcontinent and comprising several and varied systems of philosophy, belief, and ritual. Although the name Hinduism is relatively new, having been coined by British writers in the first decades of the 19th century, it refers to a rich cumulative tradition of texts and practices, some of which date to the 2nd millennium bce or possibly earlier. If the Indus valley civilization (3rd–2nd millennium bce) was the earliest source of these traditions, as some scholars hold, then Hinduism is the oldest living religion on Earth.
+
+
+
+
+      

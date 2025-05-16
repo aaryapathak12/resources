@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+*
+{
+  marging:0;
+  padding:0;
+  text:black;
+}

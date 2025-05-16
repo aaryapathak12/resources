@@ -1,0 +1,10 @@
+@plugin "daisyui";
+@keyframes blinker
+{
+    0%,100%{opacity:1;}
+    50%{opacity:0;}
+}
+#blink
+{
+    animation:blinker 0.5s step-start infinite;
+}
