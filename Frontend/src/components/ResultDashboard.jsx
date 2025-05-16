@@ -1,26 +1,34 @@
 import React from 'react'
 import { LineChart } from '@mui/x-charts/LineChart';
-import { useParams } from 'react-router-dom';
-import { wpm as findWPM } from '../utils/calculateScore';
+import { VscDebugRestart } from "react-icons/vsc";
+import { useNavigate, useParams } from 'react-router-dom';
+import { accuracy, wpm as findWPM } from '../utils/calculateScore';
 function ResultDashboard() {
-    const {nWords,Chars,nChars,nTime}=useParams();
+    const {nWords,Chars,nChars,correct,nTime}=useParams();
     const nw=parseInt(nWords);
     console.log(nWords);
-    const nc=parseInt(nChars,10);
+    const nc=parseInt(Chars,10);
     const nt=parseInt(nTime,10);
+    const ncorrect=parseInt(correct,10);
     console.log(nTime);
     const wpm=findWPM(nw,nt);
+    const acc=accuracy(ncorrect,nc);
+    const nav=useNavigate();
+    const reset=()=>
+    {
+      nav(`/`);
+    }
   return (
     <>
         <div className='h-full w-full flex font-mono sm:text-2xl text-yellow-500'>
-           <div className='w-[30%] h-full ml-[2%]'>
-             <div className='h-3/9 w-full  flex items-center text-5xl font-semibold'>
+           <div className='w-[30%] h-full ml-[2%]  text-4xl'>
+             <div className='h-3/9 w-full  flex items-center  font-semibold'>
                 <span>WPM:{wpm}</span>
             </div>
-            <div className='h-3/9 w-full  flex items-center  text-5xl font-semibold'>
-                <span>Accuracy:{nChars}</span>
+            <div className='h-3/9 w-full  flex items-center   font-semibold'>
+                <span>Accuracy:{acc}%</span>
             </div>
-            <div className='h-3/9 w-full  flex items-center  text-5xl font-semibold '>
+            <div className='h-3/9 w-full  flex items-center  font-semibold '>
                 <span>Consistency:{nTime}</span>
             </div>
            </div>
@@ -43,15 +51,20 @@ function ResultDashboard() {
   height={300}
 />
                 </div>
-                <div className='w-full h-3/9  flex'>
-                    <div className='h-full w-3/9 flex items-center justify-center text-3xl font-mono'>
+                <div className='w-full h-3/9 text-2xl flex'>
+                    <div className='h-full w-3/9 flex items-center justify-center font-mono'>
                         <span>Total time:{nTime}s</span>
                     </div>
-                    <div className='h-full w-3/9 flex items-center justify-center text-3xl font-mono'>
-                        <span>Total Characters:{Chars}/{nChars}</span>
+                    <div className='h-full w-3/9 flex items-center justify-center font-mono'>
+                        <span>Total Characters:{nChars}/{Chars}</span>
                     </div>
-                    <div className='h-full w-3/9 flex items-center justify-center text-3xl font-mono'>
-                        <span>Total time</span>
+                    <div className='h-full w-3/9 flex items-center justify-center font-mono'>
+                      <label>
+                        restart
+                      </label>
+                        <button className='btn bg-transparent border-none w-17 shadow-none lg:tooltip' data-tip="restart" onClick={reset} >
+                                  <VscDebugRestart className='h-2/3 w-2/3 hover:-rotate-180 duration-150' />
+                        </button>
                     </div>
                 </div>
            </div>
